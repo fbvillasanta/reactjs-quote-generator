@@ -51,7 +51,7 @@ class App extends Component {
           <h2>Hello world!</h2>
         </div>
         {
-          this.state.isLoading ? <p>loading...</p> :
+          this.state.isLoading ? <p>Generate quote</p> :
           <p className="App-intro">
             {this.state.quote} - {this.state.author} #{this.state.category}
           </p>
