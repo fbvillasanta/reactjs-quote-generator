@@ -3,6 +3,46 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  // component state
+  state = {
+    quote: '',
+    author: '',
+    category: '',
+    isLoading: true
+  }
+
+  loadQuote = () => {
+    const quoteApi = 'https://andruxnet-random-famous-quotes.p.mashape.com?cat=';
+    const myHeaders = new Headers({
+      'X-Mashape-Key': 'bgmxECT6sMmshZiixPWM1UZzl54Pp1utC5fjsn77qiXctOEfpm'
+    });
+    fetch(quoteApi, {
+      headers: myHeaders
+    }).then((response) => {
+      response.json().then((data) => {
+        this.setState({
+          isLoading: false,
+          quote: data.quote,
+          author: data.author,
+          category: data.category
+        });
+      })
+    })
+  }
+
+  newQuote = () => {
+    this.setState({
+      quote: 'getting quote...',
+      isLoading: true
+    });
+    this.loadQuote();
+  }
+
+  tweetQuote = () => {
+    const tweet = encodeURIComponent(`${this.state.quote} - ${this.state.author}`);
+    window.open(`https://twitter.com/intent/tweet?hashtags=quote,${this.state.category}&text=${tweet}`);
+    
+  }
   render() {
     return (
       <div className="App">
@@ -10,9 +50,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Hello world!</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+        {
+          this.state.isLoading ? <p>loading...</p> :
+          <p className="App-intro">
+            {this.state.quote} - {this.state.author} #{this.state.category}
+          </p>
+        }
+        <p>
         </p>
+        <button onClick={this.newQuote}>Get New Quote</button>
+        <button onClick={this.tweetQuote}>Tweet Quote</button>
       </div>
     );
   }
