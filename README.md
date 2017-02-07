@@ -1,3 +1,7 @@
+# reactjs-quote-generator
+A simple ReactJS web application for generating random quotes from a 3rd party API.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

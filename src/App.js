@@ -14,7 +14,7 @@ class App extends Component {
   loadQuote = () => {
     const quoteApi = 'https://andruxnet-random-famous-quotes.p.mashape.com?cat=';
     const myHeaders = new Headers({
-      'X-Mashape-Key': ''
+      'X-Mashape-Key': 'asdfadsfljlsdjflasjdflaasdf'
     });
     fetch(quoteApi, {
       headers: myHeaders
